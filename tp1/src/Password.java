@@ -70,36 +70,34 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        int u = 0 ; 
-        int l = 0 ;
-        int d = 0 ;
-        int w = 0 ;
+        int u = 0;
+        int l = 0;
+        int d = 0;
+        int w = 0;
 
         if (password.length() > 11) {
 
-            for (int i = 0 ; i < password.length() ; i++ ) {
+            for (int i = 0; i < password.length(); i++) {
 
                 if (Character.isUpperCase(password.charAt(i))) {
-                    u = u+1 ;
+                    u = u + 1;
                 }
-                    if (Character.isLowerCase(password.charAt(i))) {
-                    l = l+1 ;
+                if (Character.isLowerCase(password.charAt(i))) {
+                    l = l + 1;
                 }
-                if (Character.isDigit(password.charAt(i))){
-                    d = d+1 ;
+                if (Character.isDigit(password.charAt(i))) {
+                    d = d + 1;
                 }
-                if (Character.isWhitespace(password.charAt(i))){
-                    w = w+1 ;
+                if (Character.isWhitespace(password.charAt(i))) {
+                    w = w + 1;
                 }
-             }
+            }
 
-            
-            return u > 0 && l > 0 && d >0 && w==0 ;
+            return u > 0 && l > 0 && d > 0 && w == 0;
         }
 
-        return false ; 
+        return false;
     }
-    
 
     /**
      * Checks the strength of multiple passwords and stores the results in a
@@ -112,9 +110,9 @@ public class Password {
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
 
         HashMap<String, Boolean> check = new HashMap<>();
-        
-        for (String pw : passwords){
-            check.put(pw , isStrongPassword(pw));
+
+        for (String pw : passwords) {
+            check.put(pw, isStrongPassword(pw));
 
         }
 
@@ -135,7 +133,6 @@ public class Password {
      */
     public static String generatePassword(int nbCar) {
 
-        
         if (nbCar < 4) {
             throw new IllegalArgumentException("Password length must be at least 4 characters");
         }
@@ -171,8 +168,6 @@ public class Password {
 
         return password.toString();
     }
-
-
 
     public static void main(String[] args) {
         if (args.length == 0) {

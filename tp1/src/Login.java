@@ -10,8 +10,34 @@ public class Login {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            System.out.print("Enter username: ");
+            String username = scanner.nextLine().trim();
 
-            // Code here
+            // Check if username exists in the database
+            if (userDatabase.containsKey(username)) {
+                int attempts = 3; // Allow up to 3 attempts for password input
+
+                while (attempts > 0) {
+                    System.out.print("Enter password: ");
+                    String password = scanner.nextLine().trim();
+
+                    // Check if password matches the stored hash (assuming plain text for now)
+                    if (userDatabase.get(username).equals(password)) {
+                        System.out.println("Login successful!");
+                        scanner.close();
+                        return; // Exit program
+                    } else {
+                        attempts--;
+                        if (attempts > 0) {
+                            System.out.println("Incorrect password. Attempts remaining: " + attempts);
+                        } else {
+                            System.out.println("Too many failed attempts. Restarting username input.");
+                        }
+                    }
+                }
+            } else {
+                System.out.println("Username not found. Try again.");
+            }
         }
     }
 
