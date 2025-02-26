@@ -40,9 +40,16 @@ public class Password {
      */
     public static String bruteForce6Digit(String targetHash) {
 
-        // Code here
+        for (int i = 0; i < 1000000; i++) {
+
+            if (hashPassword(String.format("%06d", i)).equals(targetHash)) {
+                return String.format("%06d", i);
+            }
+
+        }
 
         return null;
+
     }
 
     /**
@@ -61,10 +68,36 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        int u = 0 ; 
+        int l = 0 ;
+        int d = 0 ;
+        int w = 0 ;
 
-        return false;
+        if (password.length() > 11) {
+
+            for (int i = 0 ; i < password.length() ; i++ ) {
+
+                if (Character.isUpperCase(password.charAt(i))) {
+                    u = u+1 ;
+                }
+                    if (Character.isLowerCase(password.charAt(i))) {
+                    l = l+1 ;
+                }
+                if (Character.isDigit(password.charAt(i))){
+                    d = d+1 ;
+                }
+                if (Character.isWhitespace(password.charAt(i))){
+                    w = w+1 ;
+                }
+             }
+
+            
+            return u > 0 && l > 0 && d >0 && w==0 ;
+        }
+
+        return false ; 
     }
+    
 
     /**
      * Checks the strength of multiple passwords and stores the results in a
